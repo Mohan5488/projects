@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>amazon</title>
+    <style>
+
+        .amazon-header {
+            background-color: rgb(19, 25, 33);
+            color: white;
+            padding-left: 15px;
+            padding-right: 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+        }
+        .amazon-logo{
+            width: 100px;
+            height: 31px;
+            padding: 6px;
+            
+        }
+        .amazon-logo:hover{
+            border: 1px solid white;
+        }
+
+        .middle-section{
+            flex: 1;
+            margin: 0 10px;
+            display: flex;
+            max-width: 850px;
+        }
+        
+        .input-field{
+            flex: 1;
+            font-size: 16px;
+            height: 38px;
+            padding-left: 15px;
+            border: none;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+        .search-image{
+            width: 24px;
+            height: 24px;
+        }
+        .search-btn{
+            width: 45px;
+            height: 40px;
+            background-color: #FEBD69;
+            border: none;
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+        .last-section
+        {
+            display: flex;
+        }
+        .return-orders{
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px;
+            padding: 6px;
+        }
+        .return-orders:hover{
+            border: 1px solid white;
+        }
+        .return{
+            font-size: 13px;
+        }
+        .orders{
+            font-size: 15px;
+            font-weight: bold;
+        }
+        .cart-img{
+            width: 50px;
+            height: 30px;
+        }
+        .cart-quantity{
+            display: flex;
+            position: relative;
+            padding: 6px;
+            padding-bottom:10px ;
+        }
+        .cart-quantity:hover{
+            border: 1px solid white;
+        }
+        .cart-number{
+            position: absolute;
+            top: 2px;
+            left: 30px;
+            color: #f08804;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .cart-text{
+            margin-top: 12px;
+        }
+        .three-lines{
+            width: 30px;
+            height: 26px;
+            display: none;
+        }
+        .amazon-mobile-logo{
+            width: 34px;
+            height: 35px;
+            display: none;
+        }
+        body{
+            padding-top: 60px;
+        }
+        .grid-container{
+            display: grid;
+            grid-template-columns: repeat(8,1fr);
+        }
+         @media (max-width: 2000px) {
+            .grid-container {
+                grid-template-columns: repeat(7, 1fr);
+            }
+        }
+
+        @media (max-width: 1600px) {
+            .grid-container {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        @media (max-width: 1300px) {
+            .grid-container {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        @media (max-width: 1000px) {
+            .grid-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 800px) {
+            .grid-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 575px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 450px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width: 570px){
+            .readings,.cart-quantity,.amazon-logo{
+                display: none;
+            }
+            .three-lines,.amazon-mobile-logo{
+                display: block;
+            }
+
+        }
+        .product{
+            display: flex;
+            flex-direction: column;
+            padding: 40px 25px 25px;
+            border-right: 1px solid rgb(231, 231, 231);
+            border-bottom: 1px solid rgb(231, 231, 231);
+        }
+        .product-image{
+            display: flex;
+            justify-content: center;
+            height: 180px;
+            margin-bottom: 20px;
+        }
+        .image{
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .product-name{
+            height: 40px;
+            margin-bottom: 5px;
+        }
+        .product-rating-container{
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .product-rating-image{
+            width: 100px;
+        }
+        .product-rating-count
+        {
+            margin-left: 10px;
+            color: #017cb6;
+            cursor: pointer;
+            margin-top: 2px;
+        }
+        .product-price{
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .product-quantity-container{
+            margin-bottom: 17px;
+        }
+        .product-space{
+            flex:1;
+            margin-bottom: 16px;
+        }
+        .add-to-cart-button
+        {
+            width: 100%;
+            padding: 8px;
+            border-radius: 50px;
+            background-color: #FFD814;
+            border: none;
+        }
+        .quantity{
+            background-color: white;
+            border: 1px solid rgb(173, 177, 184);
+            padding: 5px 8px;
+            border-radius: 8px;
+
+            font-size: 15px;
+            margin-right: 3px;
+            margin-bottom: 7px;
+        }
+    </style>
+</head>
+<body>
+    <header class="amazon-header">
+        <img class="amazon-mobile-logo" src="amazon-mobile-logo-white.png" alt="">
+        <section class="first-section">
+                <img class="amazon-logo" src="amazon-logo-white.png" alt="">
+        </section>
+        <section class="middle-section">
+            <input type="text" placeholder="Search" class="input-field">
+            <button class="search-btn"><img class="search-image" src="search.svg" alt=""></button>
+        </section>
+        <section class="last-section">
+            <div class="readings">
+                <div class="return-orders">
+                    <span class="returns">Returns</span>
+                    <span class="orders">& Orders</span>
+                </div>
+            </div>
+            <div class="cart">
+                <div class="cart-quantity">
+                    <a href="checkout.html"><img class="search-image cart-img" src="cart-icon.png" alt=""></a>
+                    <div class="cart-number">
+                        0
+                    </div>
+                    <div class="cart-text">cart</div>
+                </div>
+                <img class="three-lines"  src="hamburger-menu.png" alt="">
+            </div>
+        </section>
+    </header>
+    <main>
+        <div class="grid-container">
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+
+            <!--//////////////////////////////////////////////////////////////////////////////////-->
+
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+            <div class="product">
+                <div class="product-image">
+                    <img src="athletic-cotton-socks-6-pairs.jpg" alt="" class="image">
+                </div>
+                <div class="product-name">
+                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                </div>
+                <div class="product-rating-container">
+                    <div class="product-rating-stars">
+                        <img src="rating-45.png" alt="" class="product-rating-image">
+                    </div>
+                    <div class="product-rating-count">87</div>
+                </div>
+                <div class="product-price">$10.90</div>
+                <div class="product-quantity-container">
+                    <select class="quantity ">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="product-space"></div>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+        </div>
+    </main>
+    <script>
+        document.querySelectorAll('.add-to-cart-button')
+        .forEach(button =>{
+            button.addEventListener('click',()=>{
+                
+            })
+        });
+
+        const cart = [];
+    </script>
+</body>
+</html>

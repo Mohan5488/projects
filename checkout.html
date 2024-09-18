@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>check out</title>
+    <style>
+        body{
+            font-family: 'Roboto',Arial;
+        }
+        .amazon-header {
+            background-color: white;
+            color: rgb(19, 25, 33);
+            padding-left: 15px;
+            padding-right: 15px;
+            margin-left: auto;
+            margin-right: auto;
+            
+            max-width: 1100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            position: fixed;
+            top: 0;
+            left: 0px;
+            right: 0px;
+            height: 60px;
+
+        }
+        .amazon-logo{
+            width: 100px;
+            height: 31px;   
+        }
+        
+        .checkout-num{
+            color: #212121;
+            font-size: 25px;
+            font-weight: bold;
+        }
+        .checkout-num a{
+            font-size: 23px;
+            color: #007185;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        main{
+            max-width: 1100px;
+            padding-left: 30px;
+            padding-right: 30px;
+            margin-top: 140px;
+            margin-bottom: 100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .page-title{
+            font-size: 22px;
+            font-weight: bold;
+            margin: 0 0 18px;
+        }
+        .checkout-grid{
+            display: grid;
+            grid-template-columns: 1fr 350px;
+        }
+        .deliverydate{
+            color: rgb(0, 118, 0);
+            font-weight: 700;
+            font-size: 19px;
+            margin-top: 5px;
+            margin-bottom: 22px;
+        }
+        .cart-item-details-grid{
+            display: grid;
+            grid-template-columns: 100px 1fr 1fr;
+            column-gap: 25px;
+        }
+        .product-image{
+            max-width: 100px;
+            margin: auto;
+        }
+        .cart-tem-details{
+            margin-left: 10px;
+        }
+        .title{
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .price{
+            font-weight: 700;
+            color: rgb(177,39,4);
+            margin-bottom: 5px;
+        }
+        .sp{
+            font-size: 16px;
+            color: #212121;
+        }
+        .blue{
+            color: #017cb6;
+            cursor: pointer;
+        }
+        .blue:hover{
+            color: lightcoral;
+        }
+        .delivery-date{
+            display: flex;
+            flex-direction: column;
+        }
+        .delivery-options-title{
+            color: #212121;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .js-option-delivery{
+            display: grid;
+            grid-template-columns: 24px 1fr;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+        .js-radio-option{
+            margin: 3px 3px 3px 0;
+            
+        }
+        .delivery-option-date{
+            margin-left: 7px;
+            color: rgb(0, 118, 0);
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        .delivery-option-price{
+            margin-left: 9px;
+            color: rgb(120, 120, 120);
+            font-size: 15px;
+        }
+        .js-cart-item{
+            border: 1px solid rgb(222,222,222);
+            padding: 18px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            margin-right: 10px;
+        }
+        .div2{
+            display: grid;
+            grid-template-columns: 1fr auto;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+        .js-payment-summary{
+            border: 1px solid rgb(222,222,222);
+            padding: 18px;
+        }
+        .div1{
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+        .total .item{
+            padding-top: 9px;
+        }
+        .total .item-price{
+            padding-top: 9px;
+            border-top: 1px solid rgb(222,222,222);
+        }
+        .estimated{
+            color: rgb(177, 39, 4);
+            font-weight: 700;
+            font-size: 18px;
+            border-top: 1px solid rgb(222, 222, 222);
+            padding-top: 18px;
+        }
+        .button-primary {
+            width: 100%;
+            color: rgb(33, 33, 33);
+            background-color: rgb(255, 216, 20);
+            border: 1px solid rgb(252, 210, 0);
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(213, 217, 217, 0.5);
+            width: 100%;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+            margin-bottom: 19px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header class="amazon-header">
+        <div class="first">
+            <a href="amazon.html"><img src="amazon-logo.png" alt="" class="amazon-logo"></a>
+        </div>
+        <div class="middle">
+            <div class="checkout-num">Checkout (<a href="#">8 items</a>)</div>
+        </div>
+        <div class="last">
+            <img src="checkout-lock-icon.png" alt="" >
+        </div>
+    </header>
+    <main>
+        <div class="page-title">
+            Review your order
+        </div>
+        <section class="checkout-grid">
+            <div class="js-cart-summary">
+                <div class="js-cart-item">
+                    <div class="deliverydate">
+                        Delivery date: Wednesday, September 25
+                    </div>
+                    <div class="cart-item-details-grid">
+                        <div class="item-image">
+                            <img class="product-image" src="athletic-cotton-socks-6-pairs.jpg" alt="">
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="title">Black and Gray Athletic Cotton Socks - 6 Pairs</div>
+                            <div class="price">$10.90</div>
+                            <div>
+                                <span class="sp">Quantity: 6</span>
+                                <span class="sp blue">Update</span>
+                                <span class="sp blue">Delete</span>
+                            </div>
+                        </div>
+                        <div class="delivery-date">
+                            <div class="delivery-options-title">
+                                Choose a delivery option:
+                            </div>
+                            <div class="js-option-delivery">
+                                <input class="js-radio-option" type="radio" name="delivery1">
+                                <div>
+                                    <div class="delivery-option-date">Tuesday, September 19</div>
+                                    <div class="delivery-option-price">FREE Shipping</div>
+                                </div>
+                            </div>
+                            <div class="js-option-delivery">
+                                <input class="js-radio-option" type="radio" name="delivery1">
+                                <div>
+                                    <div class="delivery-option-date">Thursday, September 21</div>
+                                    <div class="delivery-option-price">$4.99 - Shipping</div>
+                                </div>
+                            </div>
+                            <div class="js-option-delivery">
+                                <input class="js-radio-option" type="radio" name="delivery1">
+                                <div>
+                                    <div class="delivery-option-date">Friday, September 22</div>
+                                    <div class="delivery-option-price">$9.99 - Shipping</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="js-cart-item">
+                    <div class="deliverydate">
+                        Delivery date: Wednesday, September 25
+                    </div>
+                    <div class="cart-item-details-grid">
+                        <div class="item-image">
+                            <img class="product-image" src="athletic-cotton-socks-6-pairs.jpg" alt="">
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="title">Black and Gray Athletic Cotton Socks - 6 Pairs</div>
+                            <div class="price">$10.90</div>
+                            <div>
+                                <span class="sp">Quantity: 6</span>
+                                <span class="sp blue">Update</span>
+                                <span class="sp blue">Delete</span>
+                            </div>
+                        </div>
+                        <div class="delivery-date">
+                            <div class="delivery-options-title">
+                                Choose a delivery option:
+                            </div>
+                            <div class="js-option-delivery">
+                                <input class="js-radio-option" type="radio" name="delivery2">
+                                <div>
+                                    <div class="delivery-option-date">Tuesday, September 19</div>
+                                    <div class="delivery-option-price">FREE Shipping</div>
+                                </div>
+                            </div>
+                            <div class="js-option-delivery">
+                                <input class="js-radio-option" type="radio" name="delivery2">
+                                <div>
+                                    <div class="delivery-option-date">Thursday, September 21</div>
+                                    <div class="delivery-option-price">$4.99 - Shipping</div>
+                                </div>
+                            </div>
+                            <div class="js-option-delivery">
+                                <input class="js-radio-option" type="radio" name="delivery2">
+                                <div>
+                                    <div class="delivery-option-date">Friday, September 22</div>
+                                    <div class="delivery-option-price">$9.99 - Shipping</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="js-payment-summary">
+                <div class="div1">Order Summary</div>
+                <div class="div2">
+                    <div class="item">item (8):</div>
+                    <div class="item-price">$107.30</div>
+                </div>
+                <div class="div2">
+                    <div class="item">Shipping & handling:</div>
+                    <div class="item-price">
+                        $14.98</div>
+                </div>
+                <div class="div2 total">
+                    <div class="item">Total before tax:</div>
+                    <div class="item-price">
+                        $122.28</div>
+                </div> 
+                <div class="div2">
+                    <div class="item">Estimated tax (10%):</div>
+                    <div class="item-price">$12.23</div>
+                </div>
+                <div class="div2 estimated">
+                    <div class="item">Order total:</div>
+                    <div class="item-price">
+                        $134.51</div>
+                </div>
+                <button class="button-primary">Place your order</button>
+            </div>
+        </section>
+    </main>
+    
+    
+</body>
+</html>
