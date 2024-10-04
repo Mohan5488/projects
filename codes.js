@@ -28,5 +28,6 @@ const countryList = {
     SGD: "SG",
     THB: "TH",
     TRY: "TR",
+    USD: "US",
     ZAR: "ZA"
 }
