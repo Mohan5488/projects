@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dbms_pbl</title>
+    <style>
+        body {
+            background-color: aquamarine;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 50px;
+            max-width: 1250px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            border: 1px solid black;
+            background-color: cornsilk;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+        }
+        h1, h2 {
+            color: #2E8B57;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 2em;
+            margin: 20px 0 10px;
+        }
+        p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            text-align: justify;
+            padding: 0 20px;
+        }
+        .img1 {
+            height: 500px;
+            width: 50%;
+            align-self: center; 
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .img1:hover {
+            transform: scale(1.05); 
+        }
+        .img2 {
+            height: 400px;
+            width: 100%;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .img2:hover {
+            transform: scale(1.05); 
+        }
+        video {
+            height: 400px;
+            width: 100%;
+            padding-top: 50px;
+            border-radius: 10px; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+        }
+
+        @media (max-width : 400px) {
+            .container {
+                padding: 30px;
+                max-width: 400px;
+                border-radius: 8px;
+            }
+            h1{
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+            h2{
+                font-size: 1.2em;
+                margin: 10px 0 5px;
+            }
+            p {
+                font-size: 1em;
+                margin-bottom: 10px;
+                padding: 0;
+            }
+            .img1 {
+                height: 200px;
+                width: auto;
+            }
+            .img2{
+                height: 150px;
+                width: 100%;
+            }
+            video {
+                height: 220px;
+                width: 100%;
+                padding-top: 30px;
+                border-radius: 10px; 
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ELECTRONIC HEALTH RECORD MANAGEMENT SYSTEM</h1>
+        <h2>ABSTRACT</h2>
+        <p>
+            Previous healthcare systems have faced several problems. Health records are often scattered across different locations, which causes delays in getting full medical information, especially in emergencies. Many systems can't easily share data between doctors and hospitals, leading to repeated tests and wasted time. Appointment booking is often manual, leading to overbooking and long waits. Some systems still rely on paper or partial digital records, which makes managing health data harder. Delays in entering information can lead to errors in patient records. On top of that, security issues make it risky to move to digital records, as unauthorized access to sensitive health data is a growing concern. These problems show the need for a centralized, efficient, and secure way to manage health records and appointments. 
+            <br><br>
+            This project aims to centralize health records in a single digital platform to improve access to personal medical data and simplify appointment booking with healthcare providers. Patients often face delays in accessing their health information during emergencies or routine check-ups due to fragmented records. To address this, the system integrates health records with Aadhaar, allowing patients and doctors to securely store, retrieve, and update health data. The platform supports personal information management, appointment scheduling, and centralized health record access. By streamlining these processes, the project is expected to reduce waiting times, avoid unnecessary medical tests, and improve emergency care by providing doctors with immediate access to patient information. This system will significantly enhance healthcare delivery and provide a more efficient, user-friendly experience for patients.
+        </p>
+        <h2>ER Diagram</h2>
+        <img class="img1" src="WhatsApp Image 2024-09-29 at 18.51.31.jpeg" alt="ER Diagram">
+        <h2>Tables</h2>
+        <img class="img2" src="mermaid-ai-diagram-2024-09-29-135726.png" alt="Tables Diagram">    
+        <h2>Project Video</h2>
+        <video controls>
+            <source src="Screen Recording 2024-10-08 at 5.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</body>
+</html>
